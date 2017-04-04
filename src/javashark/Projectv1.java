@@ -24,48 +24,15 @@ public class Projectv1 {
      public static void main(String[] args){
          final String myPcap = "myfile1.pcap";
          final StringBuilder mrString = new StringBuilder();
-         final Pcap pcap = Pcap.openOffline(myPcap, mrString);
+         final Pcap pcap = Pcap.openOffline("C:\\Users\\Tommy\\Desktop\\java\\FinalProject\\myfile1.pcap", mrString);
 
          if (pcap == null) {
              System.err.println(mrString);
              return;
          }
 
-//         pcap.loop(20, new JPacketHandler<StringBuilder>() {
-//
-//             final Tcp tcp = new Tcp();
-//
-//             final Http http = new Http();
-//
-//             final Ip4 ipv4 = new Ip4();
-//
-//             final Icmp icmp = new Icmp();
-//
-//             final Ethernet ethernet = new Ethernet();
-//
-//             final Ip6 ip6 = new Ip6();
-//
-//             final Udp upd = new Udp();
-//
-//             public void nextPacket(JPacket packet, StringBuilder mrString){
-//                 if (packet.hasHeader(Icmp.ID)){
-//                     packet.getHeader(icmp);
-//                     System.out.println(icmp.toString());
-//
-//                 }
-//                 if (packet.hasHeader(Ip4.ID)){
-//                     packet.getHeader(ipv4);
-//                    System.out.println(ipv4.source());
-//                    System.out.println((ipv4.destination()));
-//
-//                 }
-//
-//                 System.out.printf("frame #%d%n", packet.getFrameNumber());
-//             }
-//
-//
-//         }, mrString);
-         JFlowMap superFlowMap = new JFlowMap();
+
+
 
          ArrayList<Integer> packSize = new ArrayList<>();
          ArrayList<Long> retransmissions = new ArrayList<>();
@@ -104,7 +71,6 @@ public class Projectv1 {
                  }
              }
          }, mrString);
-         //System.out.printf("superFlowMap::%s%n", superFlowMap);
          System.out.println("Total # of packets: "+packSize.size());
          System.out.println(packSize);
          System.out.println(retransmissions);
