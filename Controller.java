@@ -28,10 +28,13 @@ public class Controller{
     private Desktop desktop = Desktop.getDesktop();
 
     public void btn(ActionEvent event){
+        int i = 0;
         XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
         series.getData().add(new XYChart.Data<String, Number>("Test", 100));
-        series.getData().add(new XYChart.Data<String, Number>("Test2", 200));
-        series.getData().add(new XYChart.Data<String, Number>("Test3", 300));
+        while(i < 10){
+            series.getData().add(new XYChart.Data<String, Number>(("Packet" + i), 100 + i));
+            i++;
+        }
         lineChart.getData().add(series);
     }
 
@@ -44,9 +47,10 @@ public class Controller{
 //        fileChooser.getExtensionFilters().add(extFilter);
 
         File file = fileChooser.showOpenDialog(new Stage());
-       
+
         if (file != null) {
            System.out.print(file.getPath());
+           new Projectv1();
         }
    }
 
