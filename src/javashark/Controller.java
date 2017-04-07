@@ -3,13 +3,18 @@ package javashark;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.*;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.*;
 import org.jnetpcap.Pcap;
@@ -18,6 +23,7 @@ import org.jnetpcap.packet.JPacketHandler;
 import org.jnetpcap.protocol.network.Ip4;
 import org.jnetpcap.protocol.tcpip.Tcp;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.Button;
 import java.awt.Window;
@@ -75,7 +81,7 @@ public class Controller{
 
 
     private static void configureFileChooser(final FileChooser fileChooser){
-        fileChooser.setTitle("View Pictures");
+        fileChooser.setTitle("Choose PCAP");
         fileChooser.setInitialDirectory(
                 new File(System.getProperty("user.home"))
         );
@@ -84,6 +90,23 @@ public class Controller{
                 new FileChooser.ExtensionFilter("PCAP", "*.pcap")
         );
     }
+
+    public void newWindowButton(ActionEvent event){
+        Label secondLabel = new Label("Hello");
+
+        StackPane secondaryLayout = new StackPane();
+        secondaryLayout.getChildren().add(secondLabel);
+
+        Scene secondScene = new Scene(secondaryLayout, 200, 100);
+        Stage secondStage = new Stage();
+        secondStage.setTitle("LineChart");
+        secondStage.setScene(secondScene);
+
+        secondStage.show();
+
+    }
+
+
 
     public void scan(){
 
