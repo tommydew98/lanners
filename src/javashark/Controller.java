@@ -1,21 +1,15 @@
 package javashark;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.*;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.*;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.*;
 import org.jnetpcap.Pcap;
 import org.jnetpcap.packet.JPacket;
@@ -23,21 +17,17 @@ import org.jnetpcap.packet.JPacketHandler;
 import org.jnetpcap.protocol.network.Ip4;
 import org.jnetpcap.protocol.tcpip.Tcp;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.Button;
-import java.awt.Window;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static org.jnetpcap.packet.format.FormatUtils.ip;
 
 public class Controller{
     @FXML
     LineChart<String, Number> lineChart;
+    LineChart<String, Number> packetSizeChart;
     private Desktop desktop = Desktop.getDesktop();
     private String fileName;
     private ArrayList<Integer> packSize = new ArrayList<>();
@@ -91,21 +81,81 @@ public class Controller{
         );
     }
 
-    public void newWindowButton(ActionEvent event){
-        Label secondLabel = new Label("Hello");
+//    public void newWindowButton(ActionEvent event){
+//        Label secondLabel = new Label("Hello");
+//
+//        StackPane secondaryLayout = new StackPane();
+//        secondaryLayout.getChildren().add(secondLabel);
+//
+//        Scene secondScene = new Scene(secondaryLayout, 200, 100);
+//        Stage secondStage = new Stage();
+//        secondStage.setTitle("LineChart");
+//        secondStage.setScene(secondScene);
+//
+//        secondStage.show();
+//
+//    }
 
-        StackPane secondaryLayout = new StackPane();
-        secondaryLayout.getChildren().add(secondLabel);
 
-        Scene secondScene = new Scene(secondaryLayout, 200, 100);
-        Stage secondStage = new Stage();
-        secondStage.setTitle("LineChart");
-        secondStage.setScene(secondScene);
+    //These buttons move around the scenes and should display chart with data
+    public void packetSizeButton(ActionEvent event) throws IOException{
+        System.out.println("PACKET SIZE");
+        Parent packetSizeParent = FXMLLoader.load(getClass().getResource("packetsize.fxml"));
+        Scene packetSizeScene = new Scene(packetSizeParent);
+        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        app_stage.setScene(packetSizeScene);
+        app_stage.show();
 
-        secondStage.show();
-
+        scan();
+        XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
+//        series.getData().add(new XYChart.Data<String, Number>("Test", 100));
+//        while(i < 10){
+//            series.getData().add(new XYChart.Data<String, Number>(("Packet" + i), 100 + i));
+//            i++;
+//        }
+        for(int v=0; v<packSize.size();v++){
+            series.getData().add(new XYChart.Data<String, Number>("packet"+v, packSize.get(v)));
+        }
+        packetSizeChart.getData().add(series);
     }
 
+
+
+    public void randomButton(ActionEvent event) throws IOException{
+        System.out.println("Test");
+        Parent randomParent = FXMLLoader.load(getClass().getResource("random.fxml"));
+        Scene randomScene = new Scene(randomParent);
+        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        app_stage.setScene(randomScene);
+        app_stage.show();
+    }
+
+    public void randomButton2(ActionEvent event) throws IOException{
+        System.out.println("Test2");
+        Parent home_page_parent = FXMLLoader.load(getClass().getResource("random2.fxml"));
+        Scene home_page_scene = new Scene(home_page_parent);
+        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        app_stage.setScene(home_page_scene);
+        app_stage.show();
+    }
+
+    public void randomButton3(ActionEvent event) throws IOException{
+        System.out.println("Test3");
+        Parent randomParent3 = FXMLLoader.load(getClass().getResource("random3.fxml"));
+        Scene randomScene3 = new Scene(randomParent3);
+        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        app_stage.setScene(randomScene3);
+        app_stage.show();
+    }
+
+    public void homeButton(ActionEvent event) throws IOException{
+        System.out.println("HOME");
+        Parent homeParent = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Scene homeScene = new Scene(homeParent);
+        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        app_stage.setScene(homeScene);
+        app_stage.show();
+    }
 
 
     public void scan(){

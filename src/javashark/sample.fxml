@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -35,7 +34,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <LineChart fx:id="lineChart" layoutY="116.0" prefHeight="170.0" prefWidth="300.0" title="Line Chart">
+      <LineChart fx:id="lineChart" layoutX="24.0" layoutY="118.0" prefHeight="350.0" prefWidth="650.0" title="Line Chart">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -43,30 +42,6 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
-      <LineChart layoutY="330.0" prefHeight="170.0" prefWidth="300.0">
-         <xAxis>
-            <CategoryAxis side="BOTTOM" />
-         </xAxis>
-         <yAxis>
-            <NumberAxis side="LEFT" />
-         </yAxis>
-      </LineChart>
-      <LineChart layoutX="364.0" layoutY="116.0" prefHeight="170.0" prefWidth="300.0">
-         <xAxis>
-            <CategoryAxis side="BOTTOM" />
-         </xAxis>
-         <yAxis>
-            <NumberAxis side="LEFT" />
-         </yAxis>
-      </LineChart>
-      <BarChart layoutX="362.0" layoutY="330.0" prefHeight="170.0" prefWidth="300.0">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </BarChart>
       <TextFlow layoutX="173.0" layoutY="37.0" prefHeight="200.0" prefWidth="200.0">
          <children>
             <Button mnemonicParsing="false" onAction="#browseButton" text="Browse" />
@@ -77,6 +52,9 @@
       <ProgressBar layoutX="7.0" layoutY="71.0" prefWidth="200.0" progress="0.0" />
       <ChoiceBox layoutX="310.0" layoutY="37.0" prefWidth="150.0" />
       <ChoiceBox layoutX="460.0" layoutY="37.0" prefWidth="150.0" />
-      <Button layoutX="408.0" layoutY="77.0" mnemonicParsing="false" onAction="#newWindowButton" text="LineChart" />
+      <Button layoutX="352.0" layoutY="68.0" mnemonicParsing="false" onAction="#packetSizeButton" text="LineChart" />
+      <Button layoutX="418.0" layoutY="68.0" mnemonicParsing="false" onAction="#randomButton" text="Random" />
+      <Button layoutX="479.0" layoutY="68.0" mnemonicParsing="false" onAction="#randomButton2" text="Random2" />
+      <Button layoutX="546.0" layoutY="68.0" mnemonicParsing="false" onAction="#randomButton3" text="Random3" />
    </children>
 </Pane>
