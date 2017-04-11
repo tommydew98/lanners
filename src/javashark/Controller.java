@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.stage.*;
 import org.jnetpcap.Pcap;
@@ -17,7 +18,6 @@ import org.jnetpcap.packet.JPacketHandler;
 import org.jnetpcap.protocol.network.Ip4;
 import org.jnetpcap.protocol.tcpip.Tcp;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,12 +26,15 @@ import static org.jnetpcap.packet.format.FormatUtils.ip;
 
 public class Controller{
     @FXML
+    private TextField fileText;
+    @FXML
     LineChart<String, Number> lineChart;
     LineChart<String, Number> packetSizeChart;
-    private Desktop desktop = Desktop.getDesktop();
+    //private Desktop desktop = Desktop.getDesktop();
     private String fileName;
     private ArrayList<Integer> packSize = new ArrayList<>();
     private ArrayList<Long> retransmissions = new ArrayList<>();
+
 
     public void btn(ActionEvent event){
 //        int i = 0;
@@ -50,6 +53,26 @@ public class Controller{
     }
 
 
+    public void btn2(ActionEvent event){
+//        int i = 0;
+        scan();
+        XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
+//        series.getData().add(new XYChart.Data<String, Number>("Test", 100));
+//        while(i < 10){
+//            series.getData().add(new XYChart.Data<String, Number>(("Packet" + i), 100 + i));
+//            i++;
+//        }
+        for(int v=0; v<packSize.size();v++){
+            series.getData().add(new XYChart.Data<String, Number>("packet"+v, packSize.get(v)));
+        }
+        packetSizeChart.getData().add(series);
+
+    }
+
+//    private void setName(String name) {
+//        fileDest.setText(name);
+//    }
+
     public String browseButton(ActionEvent event){
         FileChooser fileChooser = new FileChooser();
 
@@ -64,8 +87,10 @@ public class Controller{
             System.out.print(file.getPath());
             fileName = file.getPath();
             new Projectv1();
+            fileText.setText(fileName);
             return(fileName);
         }
+//        setName(fileName);
         return null;
     }
 
@@ -80,6 +105,7 @@ public class Controller{
                 new FileChooser.ExtensionFilter("PCAP", "*.pcap")
         );
     }
+
 
 //    public void newWindowButton(ActionEvent event){
 //        Label secondLabel = new Label("Hello");
@@ -106,17 +132,17 @@ public class Controller{
         app_stage.setScene(packetSizeScene);
         app_stage.show();
 
-        scan();
-        XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
-//        series.getData().add(new XYChart.Data<String, Number>("Test", 100));
-//        while(i < 10){
-//            series.getData().add(new XYChart.Data<String, Number>(("Packet" + i), 100 + i));
-//            i++;
+//        scan();
+//        XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
+////        series.getData().add(new XYChart.Data<String, Number>("Test", 100));
+////        while(i < 10){
+////            series.getData().add(new XYChart.Data<String, Number>(("Packet" + i), 100 + i));
+////            i++;
+////        }
+//        for(int v=0; v<packSize.size();v++){
+//            series.getData().add(new XYChart.Data<String, Number>("packet"+v, packSize.get(v)));
 //        }
-        for(int v=0; v<packSize.size();v++){
-            series.getData().add(new XYChart.Data<String, Number>("packet"+v, packSize.get(v)));
-        }
-        packetSizeChart.getData().add(series);
+//        packetSizeChart.getData().add(series);
     }
 
 
