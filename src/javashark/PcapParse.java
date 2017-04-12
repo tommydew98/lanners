@@ -15,6 +15,8 @@ import static org.jnetpcap.packet.format.FormatUtils.ip;
  */
 public class PcapParse {
 
+
+
     private ArrayList<Integer> packSize = new ArrayList<>();
     private ArrayList<Long> retransmissions = new ArrayList<>();
     private String fileName;
@@ -29,7 +31,7 @@ public class PcapParse {
     public void scan(){
 
         final StringBuilder mrString = new StringBuilder();
-        final Pcap pcap = Pcap.openOffline(fileName, mrString);
+        Pcap pcap = Pcap.openOffline(fileName, mrString);
 
         if (pcap == null) {
             System.err.println(mrString);

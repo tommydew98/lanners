@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -14,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.TextFlow?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javashark.Controller">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="700.0">
         <menus>
@@ -35,7 +34,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <LineChart layoutY="116.0" prefHeight="170.0" prefWidth="300.0">
+      <LineChart fx:id="lineChart" layoutX="24.0" layoutY="118.0" legendVisible="false" prefHeight="350.0" prefWidth="650.0" title="Line Chart">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -43,39 +42,19 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
-      <LineChart layoutY="330.0" prefHeight="170.0" prefWidth="300.0">
-         <xAxis>
-            <CategoryAxis side="BOTTOM" />
-         </xAxis>
-         <yAxis>
-            <NumberAxis side="LEFT" />
-         </yAxis>
-      </LineChart>
-      <LineChart layoutX="364.0" layoutY="116.0" prefHeight="170.0" prefWidth="300.0">
-         <xAxis>
-            <CategoryAxis side="BOTTOM" />
-         </xAxis>
-         <yAxis>
-            <NumberAxis side="LEFT" />
-         </yAxis>
-      </LineChart>
-      <BarChart layoutX="362.0" layoutY="330.0" prefHeight="170.0" prefWidth="300.0">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </BarChart>
-      <TextFlow layoutX="173.0" layoutY="37.0" prefHeight="200.0" prefWidth="200.0">
+      <TextFlow layoutX="289.0" layoutY="38.0" prefHeight="56.0" prefWidth="106.0">
          <children>
-            <Button mnemonicParsing="false" text="Browse" />
-            <Button mnemonicParsing="false" text="Scan" />
+            <Button mnemonicParsing="false" onAction="#browseButton" text="Browse" />
+            <Button mnemonicParsing="false" onAction="#btn" text="Scan" />
          </children>
       </TextFlow>
-      <TextField layoutX="3.0" layoutY="37.0" text="Input" />
-      <ProgressBar layoutX="7.0" layoutY="71.0" prefWidth="200.0" progress="0.0" />
-      <ChoiceBox layoutX="310.0" layoutY="37.0" prefWidth="150.0" />
-      <ChoiceBox layoutX="460.0" layoutY="37.0" prefWidth="150.0" />
+      <TextField fx:id="fileText" layoutX="3.0" layoutY="37.0" prefHeight="25.0" prefWidth="284.0" />
+      <ProgressBar layoutX="7.0" layoutY="71.0" prefHeight="18.0" prefWidth="235.0" progress="0.0" />
+      <ChoiceBox layoutX="396.0" layoutY="37.0" prefWidth="150.0" />
+      <ChoiceBox layoutX="546.0" layoutY="37.0" prefWidth="150.0" />
+      <Button layoutX="417.0" layoutY="68.0" mnemonicParsing="false" onAction="#packetSizeButton" text="PacketSize" />
+      <Button layoutX="486.0" layoutY="68.0" mnemonicParsing="false" onAction="#retransmissionButton" text="Retransmissions" />
+      <Button layoutX="591.0" layoutY="68.0" mnemonicParsing="false" onAction="#dnsButton" text="DNS" />
+      <Button layoutX="629.0" layoutY="68.0" mnemonicParsing="false" onAction="#lastButton" text="Random3" />
    </children>
 </Pane>

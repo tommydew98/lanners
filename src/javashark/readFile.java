@@ -13,6 +13,17 @@ public class readFile {
     private String fileName;
     private FileChooser fileChooser = new FileChooser();
 
+    private static readFile instance = null;
+    protected readFile(){
+
+    }
+    public static readFile getInstance(){
+        if(instance == null){
+            instance = new readFile();
+        }
+        return instance;
+    }
+
     public String read(){
 
 
@@ -45,4 +56,7 @@ public class readFile {
         return fileChooser;
     }
 
+    public String getFileName(){
+        return fileName;
+    }
 }

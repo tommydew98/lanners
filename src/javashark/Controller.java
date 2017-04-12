@@ -44,8 +44,8 @@ public class Controller{
 
 
     public void browseButton(ActionEvent event){
-        readFile file = new readFile();
-        myJNet = new PcapParse(file.read());
+
+        myJNet = new PcapParse(readFile.getInstance().read());
 
     }
 
