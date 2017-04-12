@@ -77,12 +77,24 @@ public class Controller{
 
 
     public void retransmissionButton(ActionEvent event) throws IOException{
-        System.out.println("Test");
-        Parent randomParent = FXMLLoader.load(getClass().getResource("retransmissions.fxml"));
-        Scene randomScene = new Scene(randomParent);
-        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        app_stage.setScene(randomScene);
-        app_stage.show();
+
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("retransmissions.fxml"));
+        /*
+         * if "fx:controller" is not set in fxml
+         * fxmlLoader.setController(NewWindowController);
+         */
+            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            Stage stage = new Stage();
+            stage.setTitle("New Window");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }
     }
 
     public void dnsButton(ActionEvent event) throws IOException{
