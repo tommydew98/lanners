@@ -147,7 +147,7 @@ public class Controller{
 
 
 
-    public void randomButton(ActionEvent event) throws IOException{
+    public void retransmissionButton(ActionEvent event) throws IOException{
         System.out.println("Test");
         Parent randomParent = FXMLLoader.load(getClass().getResource("random.fxml"));
         Scene randomScene = new Scene(randomParent);
@@ -156,7 +156,7 @@ public class Controller{
         app_stage.show();
     }
 
-    public void randomButton2(ActionEvent event) throws IOException{
+    public void dnsButton(ActionEvent event) throws IOException{
         System.out.println("Test2");
         Parent home_page_parent = FXMLLoader.load(getClass().getResource("random2.fxml"));
         Scene home_page_scene = new Scene(home_page_parent);
@@ -165,21 +165,12 @@ public class Controller{
         app_stage.show();
     }
 
-    public void randomButton3(ActionEvent event) throws IOException{
+    public void lastButton(ActionEvent event) throws IOException{
         System.out.println("Test3");
         Parent randomParent3 = FXMLLoader.load(getClass().getResource("random3.fxml"));
         Scene randomScene3 = new Scene(randomParent3);
         Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         app_stage.setScene(randomScene3);
-        app_stage.show();
-    }
-
-    public void homeButton(ActionEvent event) throws IOException{
-        System.out.println("HOME");
-        Parent homeParent = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        Scene homeScene = new Scene(homeParent);
-        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        app_stage.setScene(homeScene);
         app_stage.show();
     }
 
