@@ -8,9 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.StackPane;
 import javafx.stage.*;
 import org.jnetpcap.Pcap;
 import org.jnetpcap.packet.JPacket;
@@ -149,7 +147,7 @@ public class Controller{
 
     public void retransmissionButton(ActionEvent event) throws IOException{
         System.out.println("Test");
-        Parent randomParent = FXMLLoader.load(getClass().getResource("random.fxml"));
+        Parent randomParent = FXMLLoader.load(getClass().getResource("retransmissions.fxml"));
         Scene randomScene = new Scene(randomParent);
         Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         app_stage.setScene(randomScene);
@@ -158,7 +156,7 @@ public class Controller{
 
     public void dnsButton(ActionEvent event) throws IOException{
         System.out.println("Test2");
-        Parent home_page_parent = FXMLLoader.load(getClass().getResource("random2.fxml"));
+        Parent home_page_parent = FXMLLoader.load(getClass().getResource("dns.fxml"));
         Scene home_page_scene = new Scene(home_page_parent);
         Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         app_stage.setScene(home_page_scene);
