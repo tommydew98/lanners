@@ -10,17 +10,12 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.TextField;
 import javafx.stage.*;
-import org.jnetpcap.Pcap;
-import org.jnetpcap.packet.JPacket;
-import org.jnetpcap.packet.JPacketHandler;
-import org.jnetpcap.protocol.network.Ip4;
-import org.jnetpcap.protocol.tcpip.Tcp;
 
-import java.io.File;
+
+
 import java.io.IOException;
-import java.util.ArrayList;
-
-import static org.jnetpcap.packet.format.FormatUtils.ip;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Controller{
     @FXML
@@ -30,7 +25,6 @@ public class Controller{
     LineChart<String, Number> packetSizeChart;
     PcapParse myJNet;
 
-    private String fileName;
 
 
 
@@ -61,12 +55,22 @@ public class Controller{
     //These buttons move around the scenes and should display chart with data
     public void packetSizeButton(ActionEvent event) throws IOException{
         System.out.println("PACKET SIZE");
-        Parent packetSizeParent = FXMLLoader.load(getClass().getResource("packetsize.fxml"));
-        Scene packetSizeScene = new Scene(packetSizeParent);
-        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        app_stage.setScene(packetSizeScene);
-        app_stage.show();
-
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("packetsize.fxml"));
+        /*
+         * if "fx:controller" is not set in fxml
+         * fxmlLoader.setController(NewWindowController);
+         */
+            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            Stage stage = new Stage();
+            stage.setTitle("New Window");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }
 
     }
 
