@@ -24,6 +24,18 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/** 
+ * JavaShark Final Project
+ * Create a program that can parse through a .pcap file and return information that 
+ * a user may find useful.
+ * 
+ * This program DTY allows the user to open a pcap file from a directory, scan it and
+ * visualize information onto graphs. This version includes Packet Sizes, Retransmission rates and DNS names.
+ * 
+ * Authors: Tommy, Yusuke, Dickson
+ * 
+ * Version 1.3.7
+ */
 
 public class Controller{
     @FXML

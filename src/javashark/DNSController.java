@@ -3,15 +3,9 @@ package javashark;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
@@ -21,15 +15,21 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.net.InterfaceAddress;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-/**
- * Created by Yusuke on 2017-04-11.
+/** 
+ * JavaShark Final Project
+ * Create a program that can parse through a .pcap file and return information that 
+ * a user may find useful.
+ * 
+ * This program DTY allows the user to open a pcap file from a directory, scan it and
+ * visualize information onto graphs. This version includes Packet Sizes, Retransmission rates and DNS names.
+ * 
+ * Authors: Tommy, Yusuke, Dickson
+ * 
+ * Version 1.3.7
  */
 public class DNSController implements ControllerInterface, Initializable{
 

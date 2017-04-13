@@ -9,9 +9,19 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/**
- * Created by Yusuke on 2017-04-11.
+/** 
+ * JavaShark Final Project
+ * Create a program that can parse through a .pcap file and return information that 
+ * a user may find useful.
+ * 
+ * This program DTY allows the user to open a pcap file from a directory, scan it and
+ * visualize information onto graphs. This version includes Packet Sizes, Retransmission rates and DNS names.
+ * 
+ * Authors: Tommy, Yusuke, Dickson
+ * 
+ * Version 1.3.7
  */
+
 public interface ControllerInterface {
 
     //Back Button
