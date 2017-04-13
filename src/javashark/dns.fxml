@@ -10,13 +10,13 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javashark.DNSController">
    <children>
       <Button layoutY="1.0" mnemonicParsing="false" onAction="#homeButton" text="Y" />
-      <LineChart layoutY="29.0" prefHeight="370.0" prefWidth="600.0" title="Random2">
-         <xAxis>
-            <CategoryAxis side="BOTTOM" />
-         </xAxis>
-         <yAxis>
-            <NumberAxis side="LEFT" />
-         </yAxis>
-      </LineChart>
+      <BarChart fx:id="barGraph" layoutY="23.0" prefHeight="377.0" prefWidth="600.0" title="Number of DNS Connections">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
    </children>
 </Pane>
