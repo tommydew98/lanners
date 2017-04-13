@@ -21,6 +21,7 @@ public class PcapParse {
 
 	private ArrayList<Integer> packSize = new ArrayList<>();
     private ArrayList<Long> retransmissions = new ArrayList<>();
+    private HashMap<String, Integer> HttpMap = new HashMap<String, Integer>();
 
     private static PcapParse instance = null;
     private String fileName;
@@ -72,7 +73,7 @@ public class PcapParse {
             ArrayList<String> reqAddresses = new ArrayList<String>();
             
             HashMap<String, Integer> DnsMap = new HashMap<String, Integer>();
-            HashMap<String, Integer> HttpMap = new HashMap<String, Integer>();
+
             
             @Override
             public void nextPacket(JPacket jPacket, StringBuilder stringBuilder) {
@@ -110,8 +111,8 @@ public class PcapParse {
                 //Http
                 if(jPacket.hasHeader(http)){
                	 
-               	 String hostUrl = http.fieldValue((Http.Request.Host.Host));
-               	 String reqUrl = http.fieldValue((Http.Request.Host.RequestUrl));
+               	 String hostUrl = http.fieldValue((Http.Request.Host));
+               	 String reqUrl = http.fieldValue((Http.Request.RequestUrl));
                	 
                	 System.out.println("Address Name: ");
                	 System.out.println(hostUrl);
@@ -148,11 +149,7 @@ public class PcapParse {
             }
         }, mrString);
 
-        int total=0;
-        for(int i : packSize){
-            total= total+i;
-        }
-        
+        System.out.println(HttpMap);
 
 //Pcap.LOOP_INFINITE
         pcap.close();
@@ -168,6 +165,12 @@ public class PcapParse {
 
     public int getRetransmissions(){
         return retransmissions.size();
+    }
+    public HashMap<String,Integer> getHttpMap(){
+        return HttpMap;
+    }
+    public int getMapSize(){
+        return HttpMap.size();
     }
     
 }

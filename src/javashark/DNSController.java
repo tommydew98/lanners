@@ -22,6 +22,9 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
@@ -62,7 +65,13 @@ public class DNSController implements ControllerInterface, Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         XYChart.Series series = new XYChart.Series<>();
 
-        series.getData().add(new XYChart.Data("Test", 20));
+
+        Iterator it = PcapParse.getInstance().getHttpMap().entrySet().iterator();
+        while (it.hasNext()) {
+            HashMap.Entry pair = (Map.Entry)it.next();
+            series.getData().add(new XYChart.Data(pair.getKey(), pair.getValue()));
+
+        }
 
         barGraph.getData().addAll(series);
 
