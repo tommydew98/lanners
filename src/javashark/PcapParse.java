@@ -19,20 +19,29 @@ public class PcapParse {
 
     private ArrayList<Integer> packSize = new ArrayList<>();
     private ArrayList<Long> retransmissions = new ArrayList<>();
+
+
+
+    private static PcapParse instance = null;
     private String fileName;
-    public PcapParse(String file){
-        this.fileName = file;
+
+    protected PcapParse(){
+
+    }
+    public static PcapParse getInstance(){
+        if(instance == null){
+            instance = new PcapParse();
+        }
+        return instance;
     }
 
-    public String getFileName(){
-        return this.fileName;
-    }
 
     public ArrayList<Integer> getPackList(){
         return packSize;
     }
 
-    public void scan(){
+    public void scan(String fileName){
+
 
         final StringBuilder mrString = new StringBuilder();
         Pcap pcap = Pcap.openOffline(fileName, mrString);
@@ -58,9 +67,7 @@ public class PcapParse {
 
                     jPacket.getHeader(ipv4);
                     packSize.add(jPacket.getTotalSize());
-                    System.out.println(ip(ipv4.source()));
-                    System.out.println((ip(ipv4.destination())));
-                    System.out.println(jPacket.getTotalSize()+" bytes");
+
 
                 }
                 if (jPacket.hasHeader(tcp)){
@@ -75,22 +82,17 @@ public class PcapParse {
                         seq = tcp.seq();
                     }
 
-                    System.out.println("ACK "+tcp.ack());
-                    System.out.println("SEQ "+tcp.seq());
 
 
                 }
             }
         }, mrString);
-        System.out.println("Total # of packets: "+packSize.size());
-        System.out.println(packSize);
-        System.out.println(retransmissions);
+
         int total=0;
         for(int i : packSize){
             total= total+i;
         }
-        System.out.println("Average Packet Size: "+total/packSize.size()+" bytes");
-        System.out.println("Number of Retransmissions: "+retransmissions.size());
+
 
 //Pcap.LOOP_INFINITE
         pcap.close();

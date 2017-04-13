@@ -57,7 +57,6 @@
       <TextFlow layoutX="289.0" layoutY="38.0" prefHeight="56.0" prefWidth="106.0">
          <children>
             <Button mnemonicParsing="false" onAction="#browseButton" text="Browse" />
-            <Button mnemonicParsing="false" onAction="#btn" text="Scan" />
          </children>
       </TextFlow>
       <TextField fx:id="fileText" layoutX="3.0" layoutY="37.0" prefHeight="25.0" prefWidth="284.0" />

@@ -30,27 +30,19 @@ public class Controller{
     @FXML
     LineChart<String, Number> lineChart;
     LineChart<String, Number> packetSizeChart;
-    PcapParse myJNet;
+
     private String fileName;
     private ArrayList<Integer> packSize = new ArrayList<>();
     private ArrayList<Long> retransmissions = new ArrayList<>();
 
 
-    public void btn(ActionEvent event){
-        myJNet.scan();
-        XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
 
-        for(int v=0; v<myJNet.getPack();v++){
-            series.getData().add(new XYChart.Data<String, Number>("packet"+v, myJNet.getPackList().get(v)));
-        }
-        lineChart.getData().add(series);
-
-    }
 
     public void browseButton(ActionEvent event){
 
-        myJNet = new PcapParse(readFile.getInstance().read());
-        fileText.setText(myJNet.getFileName());
+
+        fileText.setText(readFile.getInstance().read());
+        PcapParse.getInstance().scan(readFile.getInstance().getFileName());
     }
 
 

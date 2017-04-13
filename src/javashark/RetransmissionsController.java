@@ -33,7 +33,7 @@ public class RetransmissionsController implements Initializable, ControllerInter
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("test");
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(new PieChart.Data("Retransmissions", 20), new PieChart.Data("Total Packets",1000));
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(new PieChart.Data("Retransmissions", PcapParse.getInstance().getRetransmissions()), new PieChart.Data("Total Packets",PcapParse.getInstance().getPack()));
         rePie.setData(pieChartData);
 
     }

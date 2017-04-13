@@ -41,11 +41,10 @@ public class PacketSizeController implements Initializable, ControllerInterface 
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("test");
         XYChart.Series series = new XYChart.Series();
-        PcapParse me = new PcapParse(readFile.getInstance().getFileName());
-        me.scan();
+
 
         for(int v=0; v<25;v++){
-            series.getData().add(new XYChart.Data("packet"+v, me.getPackList().get(v)));
+            series.getData().add(new XYChart.Data("packet"+v,PcapParse.getInstance().getPackList().get(v)));
         }
 
 //        series.getData().add(new XYChart.Data("1",23));
