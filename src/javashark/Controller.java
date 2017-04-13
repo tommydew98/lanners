@@ -152,7 +152,7 @@ public class Controller{
                 "Scan - Scans the PCAP file\n" +
                 "PacketSize - Shows the packet size for each packet\n" +
                 "Retransmissions - Shows the number of retransmissions\n" +
-                "DNS - Shows DNS\n");
+                "DNS - Displays name of http url for packets\n");
 
         final HBox hb = new HBox();
         hb.setSpacing(5);
