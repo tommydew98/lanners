@@ -23,12 +23,7 @@ public class DNS extends PcapParse {
 	
 	public static void main(String[] args) {
 		
-//		
-//		try {
-//			System.out.println("--------------------------");
-//		} catch (UnknownHostException e) {
-//			e.printStackTrace();
-//		}
+
 		
 	}
 
@@ -46,8 +41,8 @@ public class DNS extends PcapParse {
 	public String getHost() throws UnknownHostException{
 		
 		PcapParse pp = new PcapParse();
-		
-		InetAddress ia = InetAddress.getByName(pp.getInstance().hostAddress);
+
+		InetAddress ia = InetAddress.getByName(getInstance().hostAddress);
 		
 		String host = ia.getHostName();
 		
@@ -57,8 +52,8 @@ public class DNS extends PcapParse {
 	public String getCanHost() throws UnknownHostException{
 		
 		PcapParse pp = new PcapParse();
-		
-		InetAddress ia = InetAddress.getByName(pp.getInstance().hostAddress);
+
+		InetAddress ia = InetAddress.getByName(getInstance().hostAddress);
 		
 		String canHost = ia.getCanonicalHostName();
 		

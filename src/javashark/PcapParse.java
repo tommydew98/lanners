@@ -1,6 +1,5 @@
 package javashark;
 
-import javafx.collections.ObservableMap;
 import org.jnetpcap.Pcap;
 import org.jnetpcap.packet.JPacket;
 import org.jnetpcap.packet.JPacketHandler;
@@ -31,14 +30,12 @@ import static org.jnetpcap.packet.format.FormatUtils.ip;
 
 public class PcapParse {
 
-	private ArrayList<Integer> packSize = new ArrayList<>();
+    private static PcapParse instance = null;
+    protected String hostAddress;
+    private ArrayList<Integer> packSize = new ArrayList<>();
     private ArrayList<Long> retransmissions = new ArrayList<>();
     private Map<String, Integer> HttpMap = new HashMap<>();
-
-    private static PcapParse instance = null;
     private String fileName;
-    
-    protected String hostAddress;
 
     protected PcapParse(){
 
@@ -105,11 +102,9 @@ public class PcapParse {
                	 hostAddress = (ip(ipv6.source()));
                	 
                	 try {
-               		 	System.out.println("DNS Information:");
-    					System.out.println(dns.getHost());
-    					System.out.println(dns.getCanHost());
-    					
-			            Integer value = DnsMap.get(dns.getHost());
+
+
+                     Integer value = DnsMap.get(dns.getHost());
 			            if (value == null)
 			                value = 0;
 			            value++;
@@ -125,12 +120,9 @@ public class PcapParse {
                	 
                	 String hostUrl = http.fieldValue((Http.Request.Host));
                	 String reqUrl = http.fieldValue((Http.Request.RequestUrl));
-               	 
-               	 System.out.println("Address Name: ");
-               	 System.out.println(hostUrl);
-               	 System.out.println(reqUrl);
-               	 
-               	 //Adding http urls to table
+
+
+                    //Adding http urls to table
                	 Integer value = HttpMap.get(hostUrl);
 	             if (value == null)
 	                 value = 0;
@@ -163,9 +155,7 @@ public class PcapParse {
             }
         }, mrString);
 
-        System.out.println(HttpMap);
 
-//Pcap.LOOP_INFINITE
         pcap.close();
     }
     

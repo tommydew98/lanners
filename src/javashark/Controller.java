@@ -3,10 +3,10 @@ package javashark;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
-
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
@@ -14,13 +14,10 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.*;
-import javafx.fxml.FXML;
-
-import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,15 +35,17 @@ import java.util.logging.Logger;
  */
 
 public class Controller{
-    @FXML
-    private TextField fileText;
+    //Progress Bar
+    final Float[] values = new Float[]{-1.0f, 0f, 0.6f, 1.0f};
+    final Label[] labels = new Label[values.length];
+    final ProgressBar[] pbs = new ProgressBar[values.length];
+    final ProgressIndicator[] pins = new ProgressIndicator[values.length];
+    final HBox hbs[] = new HBox[values.length];
     @FXML
     LineChart<String, Number> lineChart;
     LineChart<String, Number> packetSizeChart;
-    private String fileName;
-    private ArrayList<Integer> packSize = new ArrayList<>();
-    private ArrayList<Long> retransmissions = new ArrayList<>();
-
+    @FXML
+    private TextField fileText;
 
     public void browseButton(ActionEvent event){
 
@@ -55,18 +54,14 @@ public class Controller{
         PcapParse.getInstance().scan(readFile.getInstance().getFileName());
     }
 
-
     //These buttons move around the scenes and should display chart with data
     public void packetSizeButton(ActionEvent event) throws IOException{
         System.out.println("PACKET SIZE");
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("packetsize.fxml"));
-        /*
-         * if "fx:controller" is not set in fxml
-         * fxmlLoader.setController(NewWindowController);
-         */
-            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+
+            Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
             Stage stage = new Stage();
             stage.setTitle("Packet Size");
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -81,16 +76,14 @@ public class Controller{
     }
 
 
+    //BELOW IS JUST FOR FUN :)
 
     public void retransmissionButton(ActionEvent event) throws IOException{
         System.out.println("RETRANSMISSIONS");
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("retransmissions.fxml"));
-        /*
-         * if "fx:controller" is not set in fxml
-         * fxmlLoader.setController(NewWindowController);
-         */
+
             Scene scene = new Scene(fxmlLoader.load(), 600, 430);
             Stage stage = new Stage();
             stage.setTitle("Retransmissions");
@@ -109,11 +102,8 @@ public class Controller{
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("dns.fxml"));
-        /*
-         * if "fx:controller" is not set in fxml
-         * fxmlLoader.setController(NewWindowController);
-         */
-            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+
+            Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
             Stage stage = new Stage();
             stage.setTitle("DNS");
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -162,9 +152,6 @@ public class Controller{
         stage.show();
     }
 
-
-    //BELOW IS JUST FOR FUN :)
-
     public void btn(ActionEvent event){
         PcapParse.getInstance().scan(readFile.getInstance().getFileName());
         XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
@@ -176,9 +163,6 @@ public class Controller{
 
     }
 
-
-
-
     public void mouseEntered(MouseEvent mouse){
         lineChart.setStyle("-fx-opacity:1;");
     }
@@ -186,7 +170,6 @@ public class Controller{
     public void mouseExit(MouseEvent mouse){
         lineChart.setStyle("-fx-opacity:0;");
     }
-
 
     public void sliderButton(){
         Stage stage = new Stage();
@@ -218,14 +201,6 @@ public class Controller{
         scene.setRoot(hb);
         stage.show();
     }
-
-
-    //Progress Bar
-    final Float[] values = new Float[] {-1.0f, 0f, 0.6f, 1.0f};
-    final Label[] labels = new Label[values.length];
-    final ProgressBar[] pbs = new ProgressBar[values.length];
-    final ProgressIndicator[] pins = new ProgressIndicator[values.length];
-    final HBox hbs [] = new HBox [values.length];
 
     public void progressButton(){
 
