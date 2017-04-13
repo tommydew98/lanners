@@ -79,7 +79,7 @@ public class Controller{
          * if "fx:controller" is not set in fxml
          * fxmlLoader.setController(NewWindowController);
          */
-            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            Scene scene = new Scene(fxmlLoader.load(), 600, 430);
             Stage stage = new Stage();
             stage.setTitle("Retransmissions");
             stage.initModality(Modality.APPLICATION_MODAL);

@@ -3,6 +3,7 @@ package javashark;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -30,11 +32,16 @@ public class RetransmissionsController implements Initializable, ControllerInter
 
     @FXML
     private PieChart rePie;
+
+    @FXML
+    private Label label;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("test");
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(new PieChart.Data("Retransmissions", PcapParse.getInstance().getRetransmissions()), new PieChart.Data("Total Packets",PcapParse.getInstance().getPack()));
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(new PieChart.Data("Retransmissions", PcapParse.getInstance().getRetransmissions()), new PieChart.Data("Non Retransmitted Packets",PcapParse.getInstance().getPack()- PcapParse.getInstance().getRetransmissions()));
         rePie.setData(pieChartData);
+        label.setText("Total Packets: "+PcapParse.getInstance().getPack()+" Retransmissions: "+PcapParse.getInstance().getRetransmissions());
+
 
     }
 
