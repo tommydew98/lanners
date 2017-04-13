@@ -136,6 +136,15 @@ public class Controller{
         }
     }
 
+    //Close Program Button
+    public void closeProgramButton(ActionEvent event) throws IOException{
+        System.exit(0);
+    }
+
+    public void deleteButton(ActionEvent event) throws IOException{
+        fileText.clear();
+    }
+
     //Help button
     public void helpButton(ActionEvent event) throws  IOException{
         Stage stage = new Stage();
