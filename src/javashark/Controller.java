@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.*;
@@ -29,11 +30,10 @@ public class Controller{
     private TextField fileText;
     @FXML
     LineChart<String, Number> lineChart;
-
-
-
-
-
+    LineChart<String, Number> packetSizeChart;
+    private String fileName;
+    private ArrayList<Integer> packSize = new ArrayList<>();
+    private ArrayList<Long> retransmissions = new ArrayList<>();
 
 
     public void browseButton(ActionEvent event){
@@ -161,6 +161,29 @@ public class Controller{
 
 
     //BELOW IS JUST FOR FUN :)
+
+    public void btn(ActionEvent event){
+        PcapParse.getInstance().scan(readFile.getInstance().getFileName());
+        XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
+
+        for(int v=0; v<50;v++){
+            series.getData().add(new XYChart.Data<String, Number>("packet"+v, PcapParse.getInstance().getPackList().get(v)));
+        }
+        lineChart.getData().add(series);
+
+    }
+
+
+
+
+    public void mouseEntered(MouseEvent mouse){
+        lineChart.setStyle("-fx-opacity:1;");
+    }
+
+    public void mouseExit(MouseEvent mouse){
+        lineChart.setStyle("-fx-opacity:0;");
+    }
+
 
     public void sliderButton(){
         Stage stage = new Stage();

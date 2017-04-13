@@ -1,27 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.TextFlow?>
 
-<Pane prefHeight="165.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javashark.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javashark.Controller">
    <children>
-      <MenuBar prefHeight="25.0" prefWidth="430.0">
+      <MenuBar prefHeight="25.0" prefWidth="700.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -46,16 +39,27 @@
             </Menu>
         </menus>
       </MenuBar>
+      <LineChart fx:id="lineChart" layoutX="24.0" layoutY="118.0" legendVisible="false" onMouseEntered="#mouseEntered" onMouseExited="#mouseExit" prefHeight="350.0" prefWidth="650.0" style="-fx-opacity: 0;">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
       <TextFlow layoutX="289.0" layoutY="38.0" prefHeight="56.0" prefWidth="106.0">
          <children>
             <Button mnemonicParsing="false" onAction="#browseButton" text="Browse" />
+            <Button mnemonicParsing="false" onAction="#btn" opacity="0.0" />
          </children>
       </TextFlow>
       <TextField fx:id="fileText" layoutX="3.0" layoutY="37.0" prefHeight="25.0" prefWidth="284.0" />
-      <HBox layoutX="395.0" layoutY="68.0" prefHeight="25.0" prefWidth="305.0" />
-      <Button layoutX="14.0" layoutY="108.0" mnemonicParsing="false" onAction="#packetSizeButton" text="PacketSize" />
-      <Button layoutX="86.0" layoutY="108.0" mnemonicParsing="false" onAction="#retransmissionButton" text="Retransmissions" />
-      <Button layoutX="187.0" layoutY="108.0" mnemonicParsing="false" onAction="#dnsButton" text="DNS" />
-      <Button layoutX="227.0" layoutY="108.0" mnemonicParsing="false" onAction="#lastButton" text="Random3" />
+      <HBox layoutX="395.0" layoutY="38.0" prefHeight="25.0" prefWidth="305.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#packetSizeButton" text="PacketSize" />
+            <Button mnemonicParsing="false" onAction="#retransmissionButton" text="Retransmissions" />
+            <Button mnemonicParsing="false" onAction="#dnsButton" text="DNS" />
+            <Button mnemonicParsing="false" onAction="#lastButton" text="Random3" />
+         </children></HBox>
    </children>
 </Pane>
