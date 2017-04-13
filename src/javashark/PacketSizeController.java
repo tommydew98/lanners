@@ -1,32 +1,31 @@
 package javashark;
 
-import javafx.application.Application;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static javafx.application.Application.launch;
 
 /**
  * Created by Yusuke on 2017-04-11.
  */
-public class PacketSizeController implements Initializable{
-
-
+public class PacketSizeController implements Initializable, ControllerInterface {
 
     @FXML
     private CategoryAxis x;
@@ -36,21 +35,6 @@ public class PacketSizeController implements Initializable{
 
     @FXML
     private NumberAxis y;
-
-    public void homeButton(ActionEvent event){
-//        PcapParse me = new PcapParse(readFile.getInstance().getFileName());
-//        me.scan();
-        System.out.println(readFile.getInstance().getFileName());
-
-//        XYChart.Series<String, Number> series1 = new XYChart.Series<String, Number>();
-//        series1.getData().add(new XYChart.Data<String, Number>("packet", 10));
-//        series1.getData().add(new XYChart.Data<String, Number>("packet", 20));
-////        for(int v=0; v<25;v++){
-////            series.getData().add(new XYChart.Data<String, Number>("packet"+v, me.getPackList().get(v)));
-////        }
-//        packetSizeChart.getData().add(series1);
-
-    }
 
 
     @Override
@@ -69,5 +53,26 @@ public class PacketSizeController implements Initializable{
 //        series.getData().add(new XYChart.Data("3",28));
 
         packetChart.getData().addAll(series);
+    }
+
+    public void homeButton(ActionEvent event) throws IOException {
+        System.out.println("HOME");
+        System.out.println(readFile.getInstance().getFileName());
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.TRANSPARENT); //Removes window decorations
+
+        Button close = new Button("Goodbye Rob...");
+        close.setOnAction((actionEvent) -> {
+            Timeline timeline = new Timeline();
+            KeyFrame key = new KeyFrame(Duration.millis(2000), new KeyValue(stage.getScene().getRoot().opacityProperty(), 0));
+            timeline.getKeyFrames().add(key);
+            timeline.setOnFinished((ae) -> System.exit(1));
+            timeline.play();
+        });
+
+        Scene scene = new Scene(close, 1920, 1080);
+        scene.setFill(Color.TRANSPARENT); //Makes scene background transparent
+        stage.setScene(scene);
+        stage.show();
     }
 }

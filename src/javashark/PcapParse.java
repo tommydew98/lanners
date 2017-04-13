@@ -24,6 +24,10 @@ public class PcapParse {
         this.fileName = file;
     }
 
+    public String getFileName(){
+        return this.fileName;
+    }
+
     public ArrayList<Integer> getPackList(){
         return packSize;
     }

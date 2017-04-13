@@ -1,21 +1,28 @@
 package javashark;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.*;
+import javafx.fxml.FXML;
 
-
+import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 public class Controller{
     @FXML
@@ -24,8 +31,9 @@ public class Controller{
     LineChart<String, Number> lineChart;
     LineChart<String, Number> packetSizeChart;
     PcapParse myJNet;
-
-
+    private String fileName;
+    private ArrayList<Integer> packSize = new ArrayList<>();
+    private ArrayList<Long> retransmissions = new ArrayList<>();
 
 
     public void btn(ActionEvent event){
@@ -39,17 +47,11 @@ public class Controller{
 
     }
 
-
-
-
-
     public void browseButton(ActionEvent event){
 
         myJNet = new PcapParse(readFile.getInstance().read());
-
+        fileText.setText(myJNet.getFileName());
     }
-
-
 
 
     //These buttons move around the scenes and should display chart with data
@@ -64,7 +66,8 @@ public class Controller{
          */
             Scene scene = new Scene(fxmlLoader.load(), 600, 400);
             Stage stage = new Stage();
-            stage.setTitle("New Window");
+            stage.setTitle("Packet Size");
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -77,8 +80,7 @@ public class Controller{
 
 
     public void retransmissionButton(ActionEvent event) throws IOException{
-
-
+        System.out.println("RETRANSMISSIONS");
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("retransmissions.fxml"));
@@ -88,7 +90,8 @@ public class Controller{
          */
             Scene scene = new Scene(fxmlLoader.load(), 600, 400);
             Stage stage = new Stage();
-            stage.setTitle("New Window");
+            stage.setTitle("Retransmissions");
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -98,26 +101,147 @@ public class Controller{
     }
 
     public void dnsButton(ActionEvent event) throws IOException{
-        System.out.println("Test2");
-        Parent home_page_parent = FXMLLoader.load(getClass().getResource("dns.fxml"));
-        Scene home_page_scene = new Scene(home_page_parent);
-        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        app_stage.setScene(home_page_scene);
-        app_stage.show();
+        System.out.println("DNS");
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("dns.fxml"));
+        /*
+         * if "fx:controller" is not set in fxml
+         * fxmlLoader.setController(NewWindowController);
+         */
+            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            Stage stage = new Stage();
+            stage.setTitle("DNS");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }
     }
 
     public void lastButton(ActionEvent event) throws IOException{
         System.out.println("Test3");
-        Parent randomParent3 = FXMLLoader.load(getClass().getResource("random3.fxml"));
-        Scene randomScene3 = new Scene(randomParent3);
-        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        app_stage.setScene(randomScene3);
-        app_stage.show();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("random3.fxml"));
+        /*
+         * if "fx:controller" is not set in fxml
+         * fxmlLoader.setController(NewWindowController);
+         */
+            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            Stage stage = new Stage();
+            stage.setTitle("Random3");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }
+    }
+
+    //Help button
+    public void helpButton(ActionEvent event) throws  IOException{
+        Stage stage = new Stage();
+        Group root = new Group();
+        Scene scene = new Scene(root, 400, 200);
+        stage.setScene(scene);
+        stage.setTitle("Help");
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        Label helpText = new Label();
+
+        helpText.setText("BUTTON GUIDE\n" +
+                "Browse - Choose a PCAP file to be scanned\n" +
+                "Scan - Scans the PCAP file\n" +
+                "PacketSize - Shows the packet size for each packet\n" +
+                "Retransmissions - Shows the number of retransmissions\n" +
+                "DNS - Shows DNS\n" +
+                "Random3 - Test\n");
+
+        final HBox hb = new HBox();
+        hb.setSpacing(5);
+        hb.setAlignment(Pos.CENTER);
+        hb.getChildren().add(helpText);
+        scene.setRoot(hb);
+        stage.show();
     }
 
 
+    //BELOW IS JUST FOR FUN :)
+
+    public void sliderButton(){
+        Stage stage = new Stage();
+        Group root = new Group();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Slider");
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        final Slider slider = new Slider();
+        slider.setMin(0);
+        slider.setMax(50);
+
+        final ProgressBar pb = new ProgressBar(0);
+        final ProgressIndicator pi = new ProgressIndicator(0);
+
+        slider.valueProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> ov,
+                                Number old_val, Number new_val) {
+                pb.setProgress(new_val.doubleValue()/50);
+                pi.setProgress(new_val.doubleValue()/50);
+            }
+        });
+
+        final HBox hb = new HBox();
+        hb.setSpacing(5);
+        hb.setAlignment(Pos.CENTER);
+        hb.getChildren().addAll(slider, pb, pi);
+        scene.setRoot(hb);
+        stage.show();
+    }
 
 
+    //Progress Bar
+    final Float[] values = new Float[] {-1.0f, 0f, 0.6f, 1.0f};
+    final Label[] labels = new Label[values.length];
+    final ProgressBar[] pbs = new ProgressBar[values.length];
+    final ProgressIndicator[] pins = new ProgressIndicator[values.length];
+    final HBox hbs [] = new HBox [values.length];
 
+    public void progressButton(){
+
+
+        //Progress Bars
+        Stage stage = new Stage();
+        Group root = new Group();
+        Scene scene = new Scene(root, 300, 150);
+        stage.setScene(scene);
+        stage.setTitle("Progress Controls");
+
+
+        for (int i = 0; i < values.length; i++) {
+            final Label label = labels[i] = new Label();
+            label.setText("progress:" + values[i]);
+
+            final ProgressBar pb = pbs[i] = new ProgressBar();
+            pb.setProgress(values[i]);
+
+            final ProgressIndicator pin = pins[i] = new ProgressIndicator();
+            pin.setProgress(values[i]);
+            final HBox hb = hbs[i] = new HBox();
+            hb.setSpacing(5);
+            hb.setAlignment(Pos.CENTER);
+            hb.getChildren().addAll(label, pb, pin);
+        }
+
+        final VBox vb = new VBox();
+        vb.setSpacing(5);
+        vb.getChildren().addAll(hbs);
+        scene.setRoot(vb);
+        stage.show();
+    }
 
 }

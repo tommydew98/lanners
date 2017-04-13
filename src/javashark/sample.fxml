@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -10,10 +15,11 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.TextFlow?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javashark.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javashark.Controller">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="700.0">
         <menus>
@@ -29,9 +35,15 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#helpButton" text="About" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Fun">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#sliderButton" text="Slider" />
+                  <MenuItem mnemonicParsing="false" onAction="#progressButton" text="Progress" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
       <LineChart fx:id="lineChart" layoutX="24.0" layoutY="118.0" legendVisible="false" prefHeight="350.0" prefWidth="650.0" title="Line Chart">
@@ -52,9 +64,12 @@
       <ProgressBar layoutX="7.0" layoutY="71.0" prefHeight="18.0" prefWidth="235.0" progress="0.0" />
       <ChoiceBox layoutX="396.0" layoutY="37.0" prefWidth="150.0" />
       <ChoiceBox layoutX="546.0" layoutY="37.0" prefWidth="150.0" />
-      <Button layoutX="417.0" layoutY="68.0" mnemonicParsing="false" onAction="#packetSizeButton" text="PacketSize" />
-      <Button layoutX="486.0" layoutY="68.0" mnemonicParsing="false" onAction="#retransmissionButton" text="Retransmissions" />
-      <Button layoutX="591.0" layoutY="68.0" mnemonicParsing="false" onAction="#dnsButton" text="DNS" />
-      <Button layoutX="629.0" layoutY="68.0" mnemonicParsing="false" onAction="#lastButton" text="Random3" />
+      <HBox layoutX="395.0" layoutY="68.0" prefHeight="25.0" prefWidth="305.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#packetSizeButton" text="PacketSize" />
+            <Button mnemonicParsing="false" onAction="#retransmissionButton" text="Retransmissions" />
+            <Button mnemonicParsing="false" onAction="#dnsButton" text="DNS" />
+            <Button mnemonicParsing="false" onAction="#lastButton" text="Random3" />
+         </children></HBox>
    </children>
 </Pane>
