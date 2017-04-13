@@ -58,6 +58,7 @@ public class Controller{
             Stage stage = new Stage();
             stage.setTitle("Packet Size");
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -82,6 +83,7 @@ public class Controller{
             Stage stage = new Stage();
             stage.setTitle("Retransmissions");
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -103,6 +105,7 @@ public class Controller{
             Stage stage = new Stage();
             stage.setTitle("DNS");
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -124,6 +127,7 @@ public class Controller{
             Stage stage = new Stage();
             stage.setTitle("Random3");
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -140,6 +144,7 @@ public class Controller{
         stage.setScene(scene);
         stage.setTitle("Help");
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
 
         Label helpText = new Label();
 
