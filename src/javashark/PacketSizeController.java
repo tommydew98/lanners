@@ -52,7 +52,7 @@ public class PacketSizeController implements Initializable, ControllerInterface 
         XYChart.Series series = new XYChart.Series();
 
 
-        for(int v=0; v<45;v++){
+        for(int v=0; v<150;v++){
             series.getData().add(new XYChart.Data("packet"+v,PcapParse.getInstance().getPackList().get(v)));
         }
 
