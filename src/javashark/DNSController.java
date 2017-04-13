@@ -3,6 +3,9 @@ package javashark;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,10 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -32,14 +32,9 @@ import java.util.ResourceBundle;
  */
 public class DNSController implements ControllerInterface, Initializable{
 
-    @FXML
-    private BarChart<String, Integer> barGraph;
 
     @FXML
-    private CategoryAxis x;
-
-    @FXML
-    private NumberAxis y;
+    private PieChart barGraph;
 
     public void homeButton(ActionEvent event) throws IOException {
         System.out.println("HOME");
@@ -63,17 +58,7 @@ public class DNSController implements ControllerInterface, Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        XYChart.Series series = new XYChart.Series<>();
 
-
-        Iterator it = PcapParse.getInstance().getHttpMap().entrySet().iterator();
-        while (it.hasNext()) {
-            HashMap.Entry pair = (Map.Entry)it.next();
-            series.getData().add(new XYChart.Data(pair.getKey(), pair.getValue()));
-
-        }
-
-        barGraph.getData().addAll(series);
 
     }
 }

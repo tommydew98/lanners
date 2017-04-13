@@ -1,5 +1,6 @@
 package javashark;
 
+import javafx.collections.ObservableMap;
 import org.jnetpcap.Pcap;
 import org.jnetpcap.packet.JPacket;
 import org.jnetpcap.packet.JPacketHandler;
@@ -11,6 +12,7 @@ import org.jnetpcap.protocol.tcpip.Tcp;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import static org.jnetpcap.packet.format.FormatUtils.ip;
 
@@ -21,7 +23,7 @@ public class PcapParse {
 
 	private ArrayList<Integer> packSize = new ArrayList<>();
     private ArrayList<Long> retransmissions = new ArrayList<>();
-    private HashMap<String, Integer> HttpMap = new HashMap<String, Integer>();
+    private Map<String, Integer> HttpMap = new HashMap<>();
 
     private static PcapParse instance = null;
     private String fileName;
@@ -166,7 +168,7 @@ public class PcapParse {
     public int getRetransmissions(){
         return retransmissions.size();
     }
-    public HashMap<String,Integer> getHttpMap(){
+    public Map<String,Integer> getHttpMap(){
         return HttpMap;
     }
     public int getMapSize(){
