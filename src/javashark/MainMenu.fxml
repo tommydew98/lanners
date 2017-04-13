@@ -70,7 +70,6 @@
             <Button mnemonicParsing="false" onAction="#packetSizeButton" text="PacketSize" />
             <Button mnemonicParsing="false" onAction="#retransmissionButton" text="Retransmissions" />
             <Button mnemonicParsing="false" onAction="#dnsButton" text="DNS" />
-            <Button mnemonicParsing="false" onAction="#lastButton" text="Random3" />
          </children></HBox>
    </children>
 </Pane>

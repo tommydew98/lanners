@@ -114,28 +114,6 @@ public class Controller{
         }
     }
 
-    public void lastButton(ActionEvent event) throws IOException{
-        System.out.println("Test3");
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("random3.fxml"));
-        /*
-         * if "fx:controller" is not set in fxml
-         * fxmlLoader.setController(NewWindowController);
-         */
-            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-            Stage stage = new Stage();
-            stage.setTitle("Random3");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(false);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            Logger logger = Logger.getLogger(getClass().getName());
-            logger.log(Level.SEVERE, "Failed to create new Window.", e);
-        }
-    }
-
     //Close Program Button
     public void closeProgramButton(ActionEvent event) throws IOException{
         System.exit(0);
@@ -162,8 +140,7 @@ public class Controller{
                 "Scan - Scans the PCAP file\n" +
                 "PacketSize - Shows the packet size for each packet\n" +
                 "Retransmissions - Shows the number of retransmissions\n" +
-                "DNS - Shows DNS\n" +
-                "Random3 - Test\n");
+                "DNS - Shows DNS\n");
 
         final HBox hb = new HBox();
         hb.setSpacing(5);
