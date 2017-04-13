@@ -11,10 +11,10 @@
         <Button layoutY="2.0" mnemonicParsing="false" onAction="#homeButton" text="Y" />
         <LineChart fx:id="packetChart" layoutY="30.0" legendVisible="false" prefHeight="370.0" prefWidth="600.0" title="Packet Size">
             <xAxis>
-                <CategoryAxis side="BOTTOM" fx:id="x" />
+                <CategoryAxis side="BOTTOM" fx:id="x" label="Packet Number"/>
             </xAxis>
             <yAxis>
-                <NumberAxis fx:id="y" side="LEFT" />
+                <NumberAxis fx:id="y" side="LEFT" label="Packet Size(bytes)"/>
             </yAxis>
         </LineChart>
     </children>
