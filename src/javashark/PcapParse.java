@@ -72,6 +72,7 @@ public class PcapParse {
             ArrayList<String> reqAddresses = new ArrayList<String>();
             
             HashMap<String, Integer> DnsMap = new HashMap<String, Integer>();
+            HashMap<String, Integer> HttpMap = new HashMap<String, Integer>();
             
             @Override
             public void nextPacket(JPacket jPacket, StringBuilder stringBuilder) {
@@ -116,6 +117,13 @@ public class PcapParse {
                	 System.out.println(hostUrl);
                	 System.out.println(reqUrl);
                	 
+               	 //Adding http urls to table
+               	 Integer value = HttpMap.get(hostUrl);
+	             if (value == null)
+	                 value = 0;
+	             value++;
+	             HttpMap.put(hostUrl, value);
+	             
                	 hostAddresses.add(hostUrl);
                	 reqAddresses.add(reqUrl);
                	 
