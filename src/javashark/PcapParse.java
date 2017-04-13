@@ -126,6 +126,8 @@ public class PcapParse {
 	                 value = 0;
 	             value++;
 	             HttpMap.put(hostUrl, value);
+
+
 	             
                	 hostAddresses.add(hostUrl);
                	 reqAddresses.add(reqUrl);

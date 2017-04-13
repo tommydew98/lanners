@@ -21,6 +21,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.net.InterfaceAddress;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -34,7 +35,7 @@ public class DNSController implements ControllerInterface, Initializable{
 
 
     @FXML
-    private PieChart barGraph;
+    private BarChart<String,Integer> barGraph;
 
     public void homeButton(ActionEvent event) throws IOException {
         System.out.println("HOME");
@@ -58,7 +59,15 @@ public class DNSController implements ControllerInterface, Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
+        int i =0;
+        XYChart.Series series = new XYChart.Series();
+        for (Map.Entry<String, Integer> entry : PcapParse.getInstance().getHttpMap().entrySet())
+        {
+            i++;
+            System.out.println(entry.getKey() + "/" + entry.getValue());
+            String test = entry.getKey();
+            series.getData().add(new XYChart.Data(""+test,entry.getValue()));
+        }
+        barGraph.getData().addAll(series);
     }
 }

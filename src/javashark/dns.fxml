@@ -10,6 +10,13 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javashark.DNSController">
    <children>
       <Button layoutY="1.0" mnemonicParsing="false" onAction="#homeButton" text="Y" />
-      <PieChart fx:id="barGraph" prefHeight="400.0" prefWidth="600.0" title="Number of HTTP Addresses" />
+      <BarChart fx:id="barGraph" prefHeight="400.0" prefWidth="600.0" title="Number of HTTP Addresses">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
    </children>
 </Pane>
