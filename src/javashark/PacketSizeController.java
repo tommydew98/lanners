@@ -47,9 +47,7 @@ public class PacketSizeController implements Initializable, ControllerInterface 
             series.getData().add(new XYChart.Data("packet"+v,PcapParse.getInstance().getPackList().get(v)));
         }
 
-//        series.getData().add(new XYChart.Data("1",23));
-//        series.getData().add(new XYChart.Data("2",26));
-//        series.getData().add(new XYChart.Data("3",28));
+
 
         packetChart.getData().addAll(series);
     }

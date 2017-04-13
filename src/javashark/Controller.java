@@ -29,11 +29,9 @@ public class Controller{
     private TextField fileText;
     @FXML
     LineChart<String, Number> lineChart;
-    LineChart<String, Number> packetSizeChart;
 
-    private String fileName;
-    private ArrayList<Integer> packSize = new ArrayList<>();
-    private ArrayList<Long> retransmissions = new ArrayList<>();
+
+
 
 
 

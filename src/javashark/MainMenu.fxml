@@ -19,9 +19,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.TextFlow?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javashark.Controller">
+<Pane prefHeight="165.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javashark.Controller">
    <children>
-      <MenuBar prefHeight="25.0" prefWidth="700.0">
+      <MenuBar prefHeight="25.0" prefWidth="430.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -46,29 +46,16 @@
             </Menu>
         </menus>
       </MenuBar>
-      <LineChart fx:id="lineChart" layoutX="24.0" layoutY="118.0" legendVisible="false" prefHeight="350.0" prefWidth="650.0" title="Line Chart">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </LineChart>
       <TextFlow layoutX="289.0" layoutY="38.0" prefHeight="56.0" prefWidth="106.0">
          <children>
             <Button mnemonicParsing="false" onAction="#browseButton" text="Browse" />
          </children>
       </TextFlow>
       <TextField fx:id="fileText" layoutX="3.0" layoutY="37.0" prefHeight="25.0" prefWidth="284.0" />
-      <ProgressBar layoutX="7.0" layoutY="71.0" prefHeight="18.0" prefWidth="235.0" progress="0.0" />
-      <ChoiceBox layoutX="396.0" layoutY="37.0" prefWidth="150.0" />
-      <ChoiceBox layoutX="546.0" layoutY="37.0" prefWidth="150.0" />
-      <HBox layoutX="395.0" layoutY="68.0" prefHeight="25.0" prefWidth="305.0">
-         <children>
-            <Button mnemonicParsing="false" onAction="#packetSizeButton" text="PacketSize" />
-            <Button mnemonicParsing="false" onAction="#retransmissionButton" text="Retransmissions" />
-            <Button mnemonicParsing="false" onAction="#dnsButton" text="DNS" />
-            <Button mnemonicParsing="false" onAction="#lastButton" text="Random3" />
-         </children></HBox>
+      <HBox layoutX="395.0" layoutY="68.0" prefHeight="25.0" prefWidth="305.0" />
+      <Button layoutX="14.0" layoutY="108.0" mnemonicParsing="false" onAction="#packetSizeButton" text="PacketSize" />
+      <Button layoutX="86.0" layoutY="108.0" mnemonicParsing="false" onAction="#retransmissionButton" text="Retransmissions" />
+      <Button layoutX="187.0" layoutY="108.0" mnemonicParsing="false" onAction="#dnsButton" text="DNS" />
+      <Button layoutX="227.0" layoutY="108.0" mnemonicParsing="false" onAction="#lastButton" text="Random3" />
    </children>
 </Pane>
